@@ -28,7 +28,8 @@ This crate is not release-ready until each item is evidenced.
 - [x] Record pinned PythonModule MIT notice in `vendor/serialem/ReadMe.txt`
 - [x] Record pinned SerialEM MIT/source notice in `vendor/serialem/Copyright.txt`
 - [ ] Obtain and record redistribution permission/license for the vendored Windows icon resources
-- [ ] Select a license for the Rust client and establish the canonical serialem-rs repository URL
+- [x] Establish the canonical serialem-rs repository URL (`https://github.com/m2selfA/serialem-rs`)
+- [ ] Select a license for the Rust client
 
 ## Provenance boundary
 

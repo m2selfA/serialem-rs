@@ -1,6 +1,6 @@
 # serialem-client
 
-`serialem-client` is an unofficial, blocking Rust client for the SerialEM external-script socket protocol. The repository is named `serialem-rs`. Publishing is currently disabled until the Rust client license, canonical repository URL, and Windows icon redistribution status are reviewed; see `LICENSE-STATUS.md` and `docs/release-checklist.md`.
+`serialem-client` is an unofficial, blocking Rust client for the SerialEM external-script socket protocol. The repository is named `serialem-rs` and is hosted at https://github.com/m2selfA/serialem-rs. Crate publishing is currently disabled until the Rust client license and Windows icon redistribution status are reviewed; see `LICENSE-STATUS.md` and `docs/release-checklist.md`.
 
 It is generated and tested against these pinned upstream trees:
 

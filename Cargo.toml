@@ -6,7 +6,8 @@ rust-version = "1.85"
 description = "Synchronous Rust client for the SerialEM external scripting socket protocol"
 homepage = "https://bio3d.colorado.edu/SerialEM/"
 documentation = "https://docs.rs/serialem-client"
-# The canonical serialem-rs repository URL is not established yet; publish remains disabled.
+repository = "https://github.com/m2selfA/serialem-rs"
+# Crate publication remains disabled until the Rust client license is selected.
 license-file = "LICENSE-STATUS.md"
 publish = false
 
