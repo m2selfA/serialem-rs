@@ -1,0 +1,15 @@
+[package]
+name = "serialem-client"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Synchronous Rust client for the SerialEM external scripting socket protocol"
+homepage = "https://bio3d.colorado.edu/SerialEM/"
+documentation = "https://docs.rs/serialem-client"
+# The canonical serialem-rs repository URL is not established yet; publish remains disabled.
+license-file = "LICENSE-STATUS.md"
+publish = false
+
+[dependencies]
+sha1 = "0.10"
+sha2 = "0.10"

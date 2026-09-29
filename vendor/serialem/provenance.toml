@@ -1,0 +1,28 @@
+[source]
+pythonmodule_repository = "https://github.com/mastcu/PythonModule"
+pythonmodule_commit = "cce51ea9963ef1d4bd724a879f75dd343bb31368"
+serialem_repository = "https://github.com/mastcu/SerialEM"
+serialem_commit = "1e18695024f5167edd37468899a3b3fc0bc11691"
+
+[license]
+pythonmodule_pinned_tree = "MIT license reproduced in vendor/serialem/ReadMe.txt from pinned PythonModule/ReadMe.txt"
+serialem_pinned_tree = "MIT license for SerialEM source reproduced in vendor/serialem/Copyright.txt from pinned SerialEM/Copyright.txt; plugins and bundled third-party components retain separate terms"
+icons = "license/provenance not established; assets/windows icons remain release-blocked"
+
+[file]
+path = "MacroMasterList.h"
+repository_path = "PythonModule/MacroMasterList.h"
+git_blob_sha = "f156fbe3ed926753e783b1bc74f3cdac230a48d3"
+sha256 = "33fbbb77a65d31d17dcbefaf1b0ae9f1562fa409f635b27d42b3191c61f05afe"
+
+[expected]
+all_enum_entries = 843
+external_wrappers = 793
+
+[protocol]
+regular_command = 1
+chunk_handshake = 2
+ok_to_run_external_script = 3
+get_buffer_image = 4
+put_image_in_buffer = 5
+external_port = 48888
