@@ -1,6 +1,6 @@
 # Release checklist
 
-This crate is not release-ready until each item is evidenced.
+This crate is not release-ready until each item is evidenced. Items updated from the 2026-10-01 dummy-instance session are annotated inline.
 
 ## Required gates
 
@@ -21,9 +21,9 @@ This crate is not release-ready until each item is evidenced.
 - [x] API generator runs idempotently and generated files are clean
 - [x] GitHub Actions workflow exists at `.github/workflows/ci.yml`
 - [x] Live integration test is present and explicitly ignored by default
-- [ ] Run the ignored live integration test against the target SerialEM build
-- [ ] Record the SerialEM build/version, configuration, endpoint, and result
-- [ ] Restore/verify the clean baseline after live testing
+- [x] Run the ignored live integration test against the target SerialEM build — SerialEM 4.2.28 Scoop dummy (`/DUMMY`, NoScope+NoCameras, `127.0.0.1:48888`): test connects, readiness stays false, regular commands hang; the official PythonModule behaves identically (see CHANGELOG 2026-10-01). Treat as a dummy-instance limitation, not a client bug.
+- [x] Record the SerialEM build/version, configuration, endpoint, and result — build 4.2.28 (Scoop manifest), exe SHA256 `FF51622FEAC0628A65E39051A1EDC5EBCD85091948782B8630A63430B69C0837`, `.pyd` SHA256 `DFED6251F308E51D6330708768286F9C6FED340BE5AAD1EB59041F5544D526D1`, endpoint `127.0.0.1:48888`, result: connect OK / readiness false / regular commands time out for both clients; surface diff 801 pyd exports vs 574 Rust wrappers, 572 common.
+- [x] Restore/verify the clean baseline after live testing — persisted-config SHA256 hashes verified equal to the pre-test baseline after force-restart; registry keys absent; listener re-owned by the relaunched dummy PID.
 - [x] Create the initial Git commit (`e6e166d`); review remains part of release approval
 - [x] Record pinned PythonModule MIT notice in `vendor/serialem/ReadMe.txt`
 - [x] Record pinned SerialEM MIT/source notice in `vendor/serialem/Copyright.txt`

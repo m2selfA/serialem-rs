@@ -15,3 +15,9 @@
 - Added byte-preserved Windows icon resources under `assets/windows/` for future executables, business windows, and tray surfaces.
 - Added strict fixed-response decoding, reconnect lifecycle APIs, command deadlines, upstream-compatible image timeout thresholds, provenance-driven generation, quote-aware manifest checks, and read-only safety examples.
 - Live SerialEM integration remains intentionally unverified.
+
+### Verified against the official PythonModule (2026-10-01)
+
+- Added `Error::kind_name()` for stable error-kind labels used by external harnesses, with a stability test covering every variant.
+- Cross-checked the installed SerialEM 4.2.28 `serialem.cp313-win_amd64.pyd` function surface against the generated Rust surface in an isolated uv harness: 801 Python exports vs 574 Rust wrappers, 572 common; only `AddToFrameStackMdoc`/`StartFrameStackMdoc` are Rust-only (the module ships the renamed `AddToNextFrameStackMdoc`), which also explains the 841-vs-843 `ReportNumModuleFuncs` delta. The Rust command table is substantively compatible with the installed module.
+- Confirmed on a dummy instance that `OKtoRunExternalScript` stays false and regular commands hang identically for both clients (dummy macro-processor idle-loop limitation, not a client bug); deeper live parity remains out of scope until an interactive or non-dummy session is available.

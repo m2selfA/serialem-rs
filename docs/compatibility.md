@@ -40,8 +40,7 @@ The reconciliation check currently reports 793 manifest names, 793 generated wra
 
 ### Live-blocked / not yet verified
 
-- an actual running SerialEM server;
-- command behavior against a real SerialEM macro processor;
+- command behavior against a real SerialEM macro processor (dummy-instance probe on 2026-10-01: connect OK, readiness stays false, regular commands hang for both this client and the official `.pyd`; treated as a dummy macro-processor idle-loop limitation);
 - camera, stage, microscope, navigator, plugin, and hardware side effects;
 - full-scale image transfers on the target installation;
 - version drift after the pinned upstream revisions;

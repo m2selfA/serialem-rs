@@ -14,6 +14,7 @@ It is generated and tested against these pinned upstream trees:
 - `report_num_module_funcs()` returns 843 to match the pinned upstream PythonModule; `report_num_external_funcs()` returns the 793 generated wrapper count.
 - Protocol, transport, image chunking, typed results, timeout, malformed-frame, connection invalidation, retry-policy and mock-server tests pass.
 - No live SerialEM/electron-optics integration has been run yet. Do not treat this crate as hardware-validated.
+- Cross-checked against the installed official `serialem.cp313-win_amd64.pyd` (SerialEM 4.2.28) in an offline harness: the generated wrapper surface is a subset of the module's exports (572 common names; the two apparent Rust-only entries are the module-renamed `AddToNextFrameStackMdoc` pair), and the 841-vs-843 `ReportNumModuleFuncs` delta is fully explained by those FrameStack entries. On a dummy instance both clients observe the same readiness/regular-command behavior.
 - The pinned PythonModule tree has no separate `LICENSE` file; its pinned `ReadMe.txt` license notice is reproduced in `vendor/serialem/ReadMe.txt`. Redistribution boundaries remain tracked in `vendor/serialem/provenance.toml` and `LICENSE-STATUS.md`.
 
 ## Basic usage
@@ -70,3 +71,5 @@ The live SerialEM test is deliberately ignored and requires a running, configure
 ```powershell
 cargo test --test integration_serialem -- --ignored --nocapture
 ```
+
+On the Scoop dummy instance (SerialEM 4.2.28, NoScope+NoCameras) this test connects but the readiness check stays false and regular commands hang for both this client and the official PythonModule; see the CHANGELOG entry from 2026-10-01. Treat live validation as requiring an interactive or non-dummy instance.

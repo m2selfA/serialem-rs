@@ -57,6 +57,25 @@ impl Error {
     pub fn is_transport_failure(&self) -> bool {
         self.is_timeout() || self.is_connection_lost() || matches!(self, Self::InvalidFrame(_))
     }
+
+    /// Stable machine-readable name for this error kind, used by harness
+    /// logging and tests to group outcomes without `Debug` formatting.
+    pub fn kind_name(&self) -> &'static str {
+        match self {
+            Self::Io(_) => "Io",
+            Self::InvalidArgument(_) => "InvalidArgument",
+            Self::InvalidFrame(_) => "InvalidFrame",
+            Self::ResourceLimit(_) => "ResourceLimit",
+            Self::Closed => "Closed",
+            Self::TransportStateRestore { .. } => "TransportStateRestore",
+            Self::SerialEm { .. } => "SerialEm",
+            Self::SerialEmMessage(_) => "SerialEmMessage",
+            Self::Busy => "Busy",
+            Self::UserStop => "UserStop",
+            Self::ScriptExited(_) => "ScriptExited",
+            Self::Utf8(_) => "Utf8",
+        }
+    }
 }
 
 impl fmt::Display for Error {
@@ -141,5 +160,36 @@ mod tests {
         };
         assert!(restore_error.is_connection_lost());
         assert!(std::error::Error::source(&restore_error).is_some());
+    }
+
+    #[test]
+    fn kind_name_covers_every_variant_stably() {
+        let restore_error = Error::TransportStateRestore {
+            source: io::Error::new(io::ErrorKind::BrokenPipe, "restore"),
+            original: None,
+        };
+        let cases: &[(Error, &str)] = &[
+            (
+                Error::from(io::Error::new(io::ErrorKind::TimedOut, "t")),
+                "Io",
+            ),
+            (Error::InvalidArgument("x".into()), "InvalidArgument"),
+            (Error::InvalidFrame("x".into()), "InvalidFrame"),
+            (Error::ResourceLimit("x".into()), "ResourceLimit"),
+            (Error::Closed, "Closed"),
+            (restore_error, "TransportStateRestore"),
+            (Error::SerialEm { code: -1 }, "SerialEm"),
+            (Error::SerialEmMessage("x".into()), "SerialEmMessage"),
+            (Error::Busy, "Busy"),
+            (Error::UserStop, "UserStop"),
+            (Error::ScriptExited("exit"), "ScriptExited"),
+            (
+                Error::from(String::from_utf8(vec![0xff]).unwrap_err()),
+                "Utf8",
+            ),
+        ];
+        for (error, expected) in cases {
+            assert_eq!(error.kind_name(), *expected);
+        }
     }
 }
